@@ -14,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+
 import sib.plinian.eml.*;
 
 import com.google.common.collect.Lists;
@@ -121,11 +122,11 @@ public class AncillaryData {
 	
 	
 
-	public String getIdentifier() {
+	public String getIdAncillary() {
 		return idAncillary;
 	}
 
-	public void setIdentifier(String identifier) {
+	public void setIdAncillary(String identifier) {
 		this.idAncillary = identifier;
 	}
 

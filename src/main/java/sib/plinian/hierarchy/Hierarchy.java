@@ -2,8 +2,11 @@ package sib.plinian.hierarchy;
 
 
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import sib.plinian.element.Element;
@@ -97,6 +100,8 @@ public class Hierarchy extends Element{
 	 */
 	@Column(name = "parentTaxon")
 	private String parentTaxon;
+	
+	
 	
 	@Column(name = "idRecord")
 	private String idRecord;

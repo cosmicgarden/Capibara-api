@@ -78,8 +78,8 @@ public class TaxonRecordNameDAO {
 		adM2.setDescription("description2");
 		adM1.setGeoPoint("41.89");
 		adM2.setGeoPoint("58.89");
-		adM1.setIdentifier("01");
-		adM2.setIdentifier("02");
+		adM1.setIdAncillary("01");
+		adM2.setIdAncillary("02");
 		adM1.setLicense("license");
 		adM2.setLicense("license2");
 		adM1.setLocation("location");
@@ -203,8 +203,8 @@ public class TaxonRecordNameDAO {
 		adE2.setDescription("description2");
 		adE1.setGeoPoint("41.89");
 		adE2.setGeoPoint("58.89");
-		adE1.setIdentifier("03"+id);
-		adE2.setIdentifier("04"+id);
+		adE1.setIdAncillary("03"+id);
+		adE2.setIdAncillary("04"+id);
 		adE1.setLicense("license");
 		adE2.setLicense("license2");
 		adE1.setLocation("location");

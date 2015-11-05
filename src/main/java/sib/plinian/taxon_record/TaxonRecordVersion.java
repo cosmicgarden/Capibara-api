@@ -27,8 +27,8 @@ public class TaxonRecordVersion {
 	}
 	//Elementos comunes a todas las versiones 
 	@Id 
-	@Column(name="idRecord")
-	private String idRecord;
+	@Column(name="idTaxonRecordVersion")
+	private String idTaxonRecordVersion;
 	
 	@Column(name="created")
 	private Date created;
@@ -42,23 +42,25 @@ public class TaxonRecordVersion {
 	//----
 	
 	@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinColumn(name="idRecord")
+	@JoinColumn(name="idTaxonRecordVersion")
 	private List<TaxonRecordNameVersion> taxonRecordNameVersionList = Lists.newArrayList();
 	
 	@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinColumn(name="idRecord")
+	@JoinColumn(name="idTaxonRecordVersion")
 	private List<SynonymsAtomizedVersion> synonymsAtomizedVersionList = Lists.newArrayList();
 	
 	@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-	@JoinColumn(name="idRecord")
+	@JoinColumn(name="idTaxonRecordVersion")
 	private List<HierarchyVersion> hierarchyVersionList = Lists.newArrayList();
 
-	public String getIdRecord() {
-		return idRecord;
+	
+
+	public String getIdTaxonRecordVersion() {
+		return idTaxonRecordVersion;
 	}
 
-	public void setIdRecord(String idRecord) {
-		this.idRecord = idRecord;
+	public void setIdTaxonRecordVersion(String idTaxonRecordVersion) {
+		this.idTaxonRecordVersion = idTaxonRecordVersion;
 	}
 
 	public Date getCreated() {

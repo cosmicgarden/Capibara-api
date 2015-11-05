@@ -78,8 +78,8 @@ public class SynonymsAtomizedDAO {
 		adE2.setDescription("description2");
 		adE1.setGeoPoint("41.89");
 		adE2.setGeoPoint("58.89");
-		adE1.setIdentifier("SynAD:01"+id);
-		adE2.setIdentifier("SynAD:02"+id);
+		adE1.setIdAncillary("SynAD:01"+id);
+		adE2.setIdAncillary("SynAD:02"+id);
 		adE1.setLicense("license");
 		adE2.setLicense("license2");
 		adE1.setLocation("location");

@@ -29,7 +29,7 @@ public class Element {
 	/*
 	  * Optional element
 	  */
-	@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
+	@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER, mappedBy="elementR")
 	@JoinColumn(name="idElement")
 	private List<AncillaryData> ancillaryData =Lists.newArrayList();
 

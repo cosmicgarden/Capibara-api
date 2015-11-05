@@ -27,49 +27,23 @@ public class HierarchyResource {
 		this.dao=new HierarchyDAO();
 	}
 	
-	@GET
-	@Path("/save-test")
-    @Timed
-    @Produces(MediaType.APPLICATION_JSON)
-    public Hierarchy saveJson(@QueryParam("id") String id){
-		System.out.println("TIDR: "+id);
-		return this.dao.saveTest(id);
-	}
+	
 	
 	@GET
 	@Path("/save-test-version")
     @Timed
     @Produces(MediaType.APPLICATION_JSON)
     public HierarchyVersion saveJsonVersion(@QueryParam("id") String id){
-		System.out.println("TIDR: "+id);
 		return this.dao.saveTestVersion(id);
 	}
 	
-	@GET
-	@Path("/get")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Hierarchy getHierarchy(@QueryParam("id") String id){
-		System.out.println("Hierarchy Id: "+id);
-		Hierarchy hier = new Hierarchy();
-		hier = this.dao.get(id);
-		return hier;
-	}
 	
-	
-	@POST
-	@Path("/save")
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response saveHierarchy(Hierarchy hier){
-		System.out.println("Hierarchy Id to save: "+hier.getIdElement());
-		String res= this.dao.save(hier);
-		return Response.status(200).entity(res).build();
-	}
 	
 	@POST
 	@Path("/save-version")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response saveHierarchyVersion(HierarchyVersion hierVer){
-		System.out.println("ID de la ficha: "+hierVer.getIdRecordVersion());
+		System.out.println("ID de la ficha: "+hierVer.getIdHierarchyVersion());
 		String res= this.dao.saveVersion(hierVer);
 		return Response.status(200).entity(res).build();
 	}

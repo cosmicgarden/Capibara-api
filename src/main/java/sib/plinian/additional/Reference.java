@@ -3,9 +3,12 @@ package sib.plinian.additional;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -105,6 +108,9 @@ public class Reference {
 	
 	@Column(name="taxonRecordId")
 	private String taxonRecordId;
+	
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	protected AncillaryData ancillaryDataR;
 
 	public String getIdReference() {
 		return idReference;

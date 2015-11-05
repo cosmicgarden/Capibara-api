@@ -9,20 +9,27 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 
 
 import javax.persistence.Table;
 
+import sib.plinian.taxon_record.TaxonRecordVersion;
+
 import com.google.common.collect.Lists;
 
+/**
+ * @author Oscar Duque
+ *
+ */
 @Entity
 @Table(name = "hierarchyVersion", schema = "CapibaraDB@plinian_records")
 public class HierarchyVersion {
 		@Id 
-		@Column(name="idRecordVersion")
-		private String idRecordVersion;
+		@Column(name="idHierarchyVersion")
+		private String idHierarchyVersion;
 		
 		@Column(name="version")
 		private int version;
@@ -37,17 +44,24 @@ public class HierarchyVersion {
 		@JoinColumn(name="idRecordVersion")
 		private List<Hierarchy> hierarchy = Lists.newArrayList();
 		
+		
 		public HierarchyVersion(){
 		
 		}
 
-		public String getIdRecordVersion() {
-			return idRecordVersion;
+		
+
+		public String getIdHierarchyVersion() {
+			return idHierarchyVersion;
 		}
 
-		public void setIdRecordVersion(String idRecordVersion) {
-			this.idRecordVersion = idRecordVersion;
+
+
+		public void setIdHierarchyVersion(String idHierarchyVersion) {
+			this.idHierarchyVersion = idHierarchyVersion;
 		}
+
+
 
 		public int getVersion() {
 			return version;

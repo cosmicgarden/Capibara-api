@@ -111,8 +111,8 @@ public class TaxonRecordDAO {
 		adH2.setDescription("description2");
 		adH1.setGeoPoint("41.89");
 		adH2.setGeoPoint("58.89");
-		adH1.setIdentifier("TaxidElH_AD:01"+id);
-		adH2.setIdentifier("TaxidElH_AD:02"+id);
+		adH1.setIdAncillary("TaxidElH_AD:01"+id);
+		adH2.setIdAncillary("TaxidElH_AD:02"+id);
 		adH1.setLicense("license");
 		adH2.setLicense("license2");
 		adH1.setLocation("location");
@@ -254,8 +254,8 @@ public class TaxonRecordDAO {
 		adS2.setDescription("description2");
 		adS1.setGeoPoint("41.89");
 		adS2.setGeoPoint("58.89");
-		adS1.setIdentifier("TSAD:01"+id);
-		adS2.setIdentifier("TSAD:002"+id);
+		adS1.setIdAncillary("TSAD:01"+id);
+		adS2.setIdAncillary("TSAD:002"+id);
 		adS1.setLicense("license");
 		adS2.setLicense("license2");
 		adS1.setLocation("location");
@@ -396,7 +396,7 @@ public class TaxonRecordDAO {
 		List<AncillaryData> ancillaryDataTN= Lists.newArrayList();
 		
 		AncillaryData adT2 = new AncillaryData();
-		adT2.setIdentifier("hTrn02:"+id);
+		adT2.setIdAncillary("hTrn02:"+id);
 		ancillaryDataTN.add(adT2);
 		taxonRecordName.setAncillaryData(ancillaryDataTN);
 		
