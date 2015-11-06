@@ -25,6 +25,8 @@ public class HierarchyDAO {
 		Date created = new Date();
 		hierVer.setCreated(created);
 		
+		hierVer.setIdTaxonRecordVersion("001");
+		
 		List<Hierarchy> hierarchy = Lists.newArrayList();
 		
 		Hierarchy hie = new Hierarchy();
@@ -206,6 +208,8 @@ public class HierarchyDAO {
 	public String saveVersion(HierarchyVersion hierVer){
 		System.out.println("Id HierarchyVersion!: "+hierVer.getIdHierarchyVersion());
 		
+		System.out.println("Id Taxon record por buscar!: "+hierVer.getIdTaxonRecordVersion());
+		
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("plinian_records");
 		
 		EntityManager em = emf.createEntityManager();
@@ -216,7 +220,8 @@ public class HierarchyDAO {
 		
 		//find by id
 		try{
-			taxRecVer = em.find(TaxonRecordVersion.class, hierVer.getIdHierarchyVersion());
+			//Con el id del taxonRcordVersion al cual pertenece busco en la BD si existe
+			taxRecVer = em.find(TaxonRecordVersion.class, hierVer.getIdTaxonRecordVersion());
 			
 		}catch(Exception e){
 			System.out.println("Error: "+ e.getMessage());
@@ -227,6 +232,7 @@ public class HierarchyDAO {
 		}
 		
 		if(taxRecVer==null){
+			//Si no existe el taxonRecordVersion lo creo
 			System.out.println("Is null");
 			taxRecVer = new TaxonRecordVersion();
 			
@@ -248,13 +254,14 @@ public class HierarchyDAO {
 			}else{
 				System.out.println("Exist");
 				
-				System.out.println("El id: "+taxRecVer.getIdTaxonRecordVersion());
+				System.out.println("El id del taxon record version: "+taxRecVer.getIdTaxonRecordVersion());
 				
 				int taxVer=taxRecVer.getVersion();
 				System.out.println("Version de la ficha: "+taxRecVer.getVersion());
 				
 				int hVer=taxRecVer.getHierarchyVersionList().size();
 				
+				//Aumento la version del elemento, en 1 más el numero del elementos en el listado
 				hierVer.setVersion(hVer+1);
 				
 				System.out.println("El id HierVersion: "+hierVer.getIdHierarchyVersion());

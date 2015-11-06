@@ -109,7 +109,7 @@ public class Reference {
 	@Column(name="taxonRecordId")
 	private String taxonRecordId;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	protected AncillaryData ancillaryDataR;
 
 	public String getIdReference() {
@@ -359,6 +359,16 @@ public class Reference {
 	public void setTaxonRecordId(String taxonRecordId) {
 		this.taxonRecordId = taxonRecordId;
 	}
+
+	public AncillaryData getAncillaryDataR() {
+		return ancillaryDataR;
+	}
+
+	public void setAncillaryDataR(AncillaryData ancillaryDataR) {
+		this.ancillaryDataR = ancillaryDataR;
+	}
+	
+	
 	
 
 }

@@ -102,9 +102,8 @@ public class Hierarchy extends Element{
 	private String parentTaxon;
 	
 	
-	
-	@Column(name = "idRecord")
-	private String idRecord;
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	protected HierarchyVersion hierarchyVersionR;
 	
 	
 	public String getClassification() {
@@ -219,12 +218,12 @@ public class Hierarchy extends Element{
 		this.parentTaxon = parentTaxon;
 	}
 
-	public String getIdRecord() {
-		return idRecord;
+	public HierarchyVersion getHierarchyVersionR() {
+		return hierarchyVersionR;
 	}
 
-	public void setIdRecord(String idRecord) {
-		this.idRecord = idRecord;
+	public void setHierarchyVersionR(HierarchyVersion hierarchyVersionR) {
+		this.hierarchyVersionR = hierarchyVersionR;
 	}
 	
 	

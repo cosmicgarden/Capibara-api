@@ -11,11 +11,13 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-
+import sib.plinian.element.Element;
 import sib.plinian.eml.*;
+import sib.plinian.hierarchy.Hierarchy;
 
 import com.google.common.collect.Lists;
 
@@ -120,7 +122,8 @@ public class AncillaryData {
 	@JoinColumn(name="idAncillary")
 	private List<Reference> References =Lists.newArrayList();
 	
-	
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	protected Hierarchy hierarchyR;
 
 	public String getIdAncillary() {
 		return idAncillary;
@@ -304,6 +307,14 @@ public class AncillaryData {
 
 	public void setReferences(List<Reference> references) {
 		References = references;
+	}
+
+	public Hierarchy getHierarchyR() {
+		return hierarchyR;
+	}
+
+	public void setHierarchyR(Hierarchy hierarchyR) {
+		this.hierarchyR = hierarchyR;
 	}
 	
 	

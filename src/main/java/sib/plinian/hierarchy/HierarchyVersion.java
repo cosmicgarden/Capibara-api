@@ -40,16 +40,20 @@ public class HierarchyVersion {
 		@Column(name="idUser")
 		private String idUser;
 		
+		@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+		protected TaxonRecordVersion taxonRecordVersion;
+		
 		@OneToMany (cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
-		@JoinColumn(name="idRecordVersion")
+		@JoinColumn(name="idHierarchyVersion")
 		private List<Hierarchy> hierarchy = Lists.newArrayList();
 		
+		@Column(name="idTaxonRecordVersion")
+		String idTaxonRecordVersion;
 		
 		public HierarchyVersion(){
 		
 		}
 
-		
 
 		public String getIdHierarchyVersion() {
 			return idHierarchyVersion;
@@ -93,6 +97,26 @@ public class HierarchyVersion {
 
 		public void setIdUser(String idUser) {
 			this.idUser = idUser;
+		}
+
+
+		public TaxonRecordVersion getTaxonRecordVersion() {
+			return taxonRecordVersion;
+		}
+
+
+		public void setTaxonRecordVersion(TaxonRecordVersion taxonRecordVersion) {
+			this.taxonRecordVersion = taxonRecordVersion;
+		}
+
+
+		public String getIdTaxonRecordVersion() {
+			return idTaxonRecordVersion;
+		}
+
+
+		public void setIdTaxonRecordVersion(String idTaxonRecordVersion) {
+			this.idTaxonRecordVersion = idTaxonRecordVersion;
 		}
 		
 		
