@@ -30,13 +30,13 @@ public class CapibaraApplication extends Application<CapibaraConfiguration> {
     public void run(CapibaraConfiguration configuration,
             Environment environment){
     		
-    		//final TaxonRecordResource resource = new TaxonRecordResource();
+    		final TaxonRecordResource resource = new TaxonRecordResource();
     		//final TaxonRecordNameResource resourceTrn = new TaxonRecordNameResource();
     		//final SynonymsAtomizedResource resourceSyn = new SynonymsAtomizedResource();
     		final HierarchyResource resourceHier = new HierarchyResource();
     		
     		 
-    		//environment.jersey().register(resource);
+    		environment.jersey().register(resource);
     		//environment.jersey().register(resourceTrn);
     		//environment.jersey().register(resourceSyn);
     		environment.jersey().register(resourceHier);

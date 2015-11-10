@@ -13,7 +13,9 @@ import javax.ws.rs.core.Response;
 import com.codahale.metrics.annotation.Timed;
 
 import sib.capibara.dao.TaxonRecordDAO;
+import sib.plinian.hierarchy.HierarchyVersion;
 import sib.plinian.taxon_record.TaxonRecord;
+import sib.plinian.taxon_record.TaxonRecordVersion;
 
 
 @Path("/taxon-record")
@@ -44,6 +46,13 @@ public class TaxonRecordResource {
 		taxRec = this.dao.get(id);
 		
 		return taxRec;
+	}
+	
+	@POST
+	@Path("/get-all")
+	@Produces(MediaType.APPLICATION_JSON)
+	public TaxonRecordVersion getTaxonRecordVersion(@QueryParam("id") String id){
+		return this.dao.getAllVersions(id);
 	}
 	
 	

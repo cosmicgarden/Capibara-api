@@ -47,6 +47,17 @@ public class HierarchyResource {
 		String res= this.dao.saveVersion(hierVer);
 		return Response.status(200).entity(res).build();
 	}
+	
+	@GET
+	@Path("/get-version")
+    @Timed
+    @Produces(MediaType.APPLICATION_JSON)
+    public HierarchyVersion getHierarchyVersion(@QueryParam("id") String id){
+		return this.dao.getVersion(id);
+	}
+	
+	
+	
 
 
 }

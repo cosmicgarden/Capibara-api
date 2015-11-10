@@ -183,13 +183,64 @@ public class HierarchyDAO {
 		Reference ref2= new Reference();
 		referencesH.add(ref1);
 		ref2.setIdReference("HAR:03"+id);
-		//referencesH.add(ref2);
+		ref2.setIdentifiers(identifiers);
+		ref2.setInstitution("Instituto Humboldt");
+		ref2.setIsbn("ISBN");
+		ref2.setIssn("issn");
+		ref2.setIssue("issue");
+		keywords.add("Aniimal");
+		keywords.add("Vegeta");
+		ref2.setKeywords(keywords);
+		ref2.setLast_modified(last_modified);
+		ref2.setLink("www.hhodad.com");
+		ref2.setPages("85");
+		ref2.setProfile_id("7887dsad");
+		ref2.setPublisher("Norma");
+		ref2.setSeries("series");
+		ref2.setSource("source");
+		ref2.setTags("tags");
+		ref2.setTaxonRecordId("0145");
+		ref2.setTitle("DNA rtna");
+		ref2.setType("type");
+		ref2.setVolume("mds25");
+		ref2.setWebsites("www.sib.com");
+		ref2.setYear(year);
+		referencesH.add(ref2);
 		adH1.setReferences(referencesH);
 		ancillaryDataH.add(adH1);
 		//ancillaryDataH.add(adH2);
 		hie2.setAncillaryData(ancillaryDataH);
 		
+		//---
+		
+		hie.setIdElement("Hier:01abc"+id);
+		
+		hie.setClassHierarchy("classHierarchy");
+		hie.setClassification("classification");
+		hie.setFamily("family");
+		hie.setGenus("genus");
+		hie.setHigherClassification("higherClassification");
+		hie.setInfraspecificEpithet("infraspecificEpithet");
+		hie.setKingdom("kingdom");
+		hie.setOrder("order");
+		hie.setParentTaxon("parentTaxon");
+		hie.setPhylum("phylum");
+		hie.setRecommended("recommended");
+		hie.setSpecificEpithet("specificEpithet");
+		hie.setSubgenus("subgenus");
+		hie.setTaxonRank("taxonRank");
+		
+		
+		
+		
+		
+		hie.setAncillaryData(ancillaryDataH);
+		
 		hierarchy.add(hie2);
+		
+		hierarchy.add(hie);
+		
+		
 		hierVer.setHierarchy(hierarchy);
 		
 		hierVer.setIdHierarchyVersion("001");
@@ -236,7 +287,7 @@ public class HierarchyDAO {
 			System.out.println("Is null");
 			taxRecVer = new TaxonRecordVersion();
 			
-			taxRecVer.setIdTaxonRecordVersion(hierVer.getIdHierarchyVersion());
+			taxRecVer.setIdTaxonRecordVersion(hierVer.getIdTaxonRecordVersion());
 			
 			hierVer.setVersion(1);
 			
@@ -278,7 +329,7 @@ public class HierarchyDAO {
 				
 				System.out.println("New size: "+taxRecVer.getHierarchyVersionList().size());
 				
-				em.merge(taxRecVer);
+				//em.merge(taxRecVer);
 				
 				/*Query q = em.createQuery("UPDATE TaxonRecordVersion SET hierarchyVersionList = :hierList WHERE p.idTaxonRecordVersion = :id");
 				
@@ -288,12 +339,50 @@ public class HierarchyDAO {
 				
 				int total = q.executeUpdate();*/
 				
+				em.persist(hierVer);
+				
 				
 				
 				em.close();
 				
 				return "don't do that: "+"";
 		}
+	}
+	
+	public HierarchyVersion getVersion(String hvId){
+		HierarchyVersion hierVer = new HierarchyVersion();
+		
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("plinian_records");
+		
+		EntityManager em = emf.createEntityManager();
+		
+		hierVer = em.find(HierarchyVersion.class, hvId);
+		
+		return hierVer;
+		
+		/*//find by id
+	    try{
+	    	//Con el id del taxonRcordVersion al cual pertenece busco en la BD si existe
+	    	hierVer = em.find(HierarchyVersion.class, hvId);
+					
+		}catch(Exception e){
+			System.out.println("Error: "+ e.getMessage());
+					
+			for(int i=0;i<e.getStackTrace().length;i++){
+						System.out.println("Error: "+ e.getStackTrace()[i]);
+			}
+		}
+	    
+	    if(hierVer==null){
+	    	System.out.println("Not in the db");
+	    	return hierVer;
+	    }else{
+	    	return hierVer; 
+	    }*/
+		
+		
+		//return hierVer;
+		
 	}
 
 	

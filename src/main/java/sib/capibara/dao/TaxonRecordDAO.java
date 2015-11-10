@@ -9,12 +9,12 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import javax.ws.rs.core.Response;
 
-
 import sib.plinian.additional.AncillaryData;
 import sib.plinian.additional.Reference;
 import sib.plinian.base_elements.BaseElements;
 import sib.plinian.eml.Agent;
 import sib.plinian.hierarchy.Hierarchy;
+import sib.plinian.hierarchy.HierarchyVersion;
 import sib.plinian.synonyms.SynonymsAtomized;
 import sib.plinian.taxon_record.TaxonRecord;
 import sib.plinian.taxon_record.TaxonRecordVersion;
@@ -457,90 +457,38 @@ public class TaxonRecordDAO {
 		return taxRec;
 	}
 
-	/*public String save(TaxonRecord taxRec) {
-		System.out.println("IDHierarchy!!: "+taxRec.getIdRecord());
+	public TaxonRecordVersion getAllVersions(String id) {
+	    TaxonRecordVersion taxVer = new TaxonRecordVersion();
 		
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("plinian_records");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("plinian_records");
 		
 		EntityManager em = emf.createEntityManager();
 		
-		//TaxonRecord taxRec = new TaxonRecord();
-		
-		TaxonRecordVersion taxRecVer = new TaxonRecordVersion();
-		
-		
-		try{
-			taxRecVer = em.find(TaxonRecordVersion.class, taxRec.getIdRecord());
-			
+		//find by id
+	    try{
+	    	//Con el id del taxonRcordVersion al cual pertenece busco en la BD si existe
+	    	taxVer = em.find(TaxonRecordVersion.class, id);
+					
 		}catch(Exception e){
 			System.out.println("Error: "+ e.getMessage());
-			
+					
 			for(int i=0;i<e.getStackTrace().length;i++){
-				System.out.println("Error: "+ e.getStackTrace()[i]);
+						System.out.println("Error: "+ e.getStackTrace()[i]);
 			}
 		}
+	    
+	    if(taxVer==null){
+	    	System.out.println("Not in the db");
+	    	return taxVer;
+	    }else{
+	    	return taxVer; 
+	    }
 		
-		if(taxRecVer==null){
-			System.out.println("Is null");
-			taxRecVer = new TaxonRecordVersion();
-			taxRecVer.setIdRecord(taxRec.getIdRecord());
-			taxRecVer.setLanguage(taxRec.getLanguage());
-			int ver=taxRecVer.getVersion();
-			taxRecVer.setVersion(ver+1);
-			int taxRcNamVer = taxRecVer.getTaxonRecordNameVersion().size();
-			System.out.println("Longitud: "+taxRcNamVer);
-			TaxonRecordNameVersion txrn = new TaxonRecordNameVersion();
-			txrn.setVersion(taxRcNamVer);
-			txrn.setTaxonRecordName(taxRec.getTaxonRecordName());
-			Date time=new Date();
-			txrn.setIdRecordVersion(time.toString());
-			taxRecVer.getTaxonRecordNameVersion().add(txrn);
-			System.out.println("Longitud: "+taxRecVer.getTaxonRecordNameVersion().size());
-			try{
-				em.persist(taxRecVer);
-				
-				em.close();
-			}catch (Exception e){
-				em.close();
-				return "Error: "+ e.getMessage();
-			}
-		}else{
-			int ver=taxRecVer.getVersion();
-			taxRecVer.setVersion(ver+1);
-			int taxRcNamVer = taxRecVer.getTaxonRecordNameVersion().size();
-			System.out.println("Longitud tx: "+taxRcNamVer);
-			TaxonRecordNameVersion txrn = new TaxonRecordNameVersion();
-			txrn.setVersion(taxRcNamVer+1);
-			txrn.setTaxonRecordName(taxRec.getTaxonRecordName());
-			Date time=new Date();
-			txrn.setIdRecordVersion(time.toInstant().toString());
-			taxRecVer.getTaxonRecordNameVersion().add(txrn);
-			System.out.println("Longitud: "+taxRecVer.getTaxonRecordNameVersion().size());
-			System.out.println("El id: "+taxRecVer.getIdRecord());
-			try{
-				em.merge(taxRecVer);
-				
-				em.close();
-			}catch (Exception e){
-				em.close();
-				return "Error: "+ e.getMessage();
-			}
-		}
 		
-		try{
-			System.out.println("Id de la ficha: "+taxRecVer.getIdRecord());
-		}catch(Exception e){
-			System.out.println("Error: "+ e.getMessage());
-			
-			for(int i=0;i<e.getStackTrace().length;i++){
-				System.out.println("Error: "+ e.getStackTrace()[i]);
-			}
-			
-			return "Error: "+ e.getMessage();
-		}
-		
-		return "";
-	}*/
+		//return null;
+	}
+
+	
 
 	
 
